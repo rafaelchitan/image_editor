@@ -1,0 +1,38 @@
+##### Copyright Stan Andrei 312CAb 2022-2023
+
+# Description
+
+`image_editor` is a program for editing PPM and PGM files. It supports various commands 
+such as:
+
+	- LOAD: load an image
+	- SAVE: save an image
+	- SELECT: select a zone in the image or ALL, for the entire image
+	- CROP: Crop the selection
+	- HISTOGRAM: Get the image histogram
+	- EQUALIZE: Equalize an image
+	- ROTATE: Rotate the selection or the entire image
+	- APPLY: Apply a filter
+
+# `main.c`
+
+This is the entry-point for the program. It reads lines from `stdin` and 
+parses the commands. Each command has a function associated with it in 
+the `common.h` header file. It stores the loaded image struct defined in 
+`image.h`.
+
+# `common.c`
+
+This file contains the implementation of the functions found in `common.h`. 
+It makes heavy use of `strtok` and `sscanf` in order to parse commands.
+
+There are some utility functions defined in `utils.h`.
+
+# `utils.c`
+
+This file contains the implementation of the functions found in `utils.h`.
+
+# `image.c`
+
+This file contains the implementation of the functions found in `image.h`. 
+It takes care of loading and saving process.
