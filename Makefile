@@ -1,5 +1,5 @@
 build:
-	gcc main.c filters.h image.h image.c utils.c utils.h common.c common.h -o image_editor -lm -Wextra -Wall -std=c99
+	gcc -lm -Wextra -Wall -std=c99 main.c image.c utils.c common.c shapes.c convert.c -o image_editor 
 
 clean:
 	rm -f *.o

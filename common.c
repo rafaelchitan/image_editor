@@ -8,6 +8,33 @@
 #include "filters.h"
 #include <limits.h>
 
+void merge(struct image *loaded_image)
+{
+	struct image *second_image = NULL;
+	load_file(&second_image);
+
+	if (second_image->height != loaded_image->height ||
+	    second_image->width != loaded_image->width) {
+			printf("Could not merge!\n");
+			image_free(second_image);
+		}
+	
+	for (int i = 0; i < loaded_image->height; i++)
+		for (int j = 0; j < loaded_image->width; j++) {
+			loaded_image->matrix[i][j].black = (loaded_image->matrix[i][j].black +
+				second_image->matrix[i][j].black) / 2;
+			loaded_image->matrix[i][j].R = (loaded_image->matrix[i][j].R +
+				second_image->matrix[i][j].R) / 2;
+			loaded_image->matrix[i][j].G = (loaded_image->matrix[i][j].G +
+				second_image->matrix[i][j].G) / 2;
+			loaded_image->matrix[i][j].B = (loaded_image->matrix[i][j].B +
+				second_image->matrix[i][j].B) / 2;
+		}
+
+	image_free(second_image);
+}
+
+
 void select_command(struct image *loaded_image)
 {
 	if (!loaded_image) {
@@ -382,16 +409,16 @@ void rotate_command(struct image *loaded_image)
 	}
 
 	while (rotations--) {
-		struct pixel **mat = rotate_pixelmat(loaded_image->matrix,
-											 loaded_image->select.top_left,
-											 loaded_image->select.bottom_right);
+		struct pixel **mat = NULL;
+		mat = rotate_pixelmat(loaded_image->matrix,
+							  loaded_image->select.top_left,
+							  loaded_image->select.bottom_right);
 		for (int i = loaded_image->select.top_left.y, ii = 0;
 			 i < loaded_image->select.bottom_right.y; i++, ii++) {
 			for (int j = loaded_image->select.top_left.x, jj = 0;
 				 j < loaded_image->select.bottom_right.x; j++, jj++)
 				loaded_image->matrix[i][j] = mat[ii][jj];
 		}
-
 		matrix_free((void **)mat, select_size);
 	}
 	printf("Rotated %d\n", degs);

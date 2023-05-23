@@ -1,4 +1,5 @@
-##### Copyright Stan Andrei 312CAb 2022-2023
+#### Copyright Stan Andrei & Chitan Rafael 312CA 2022-2023
+#### PCLP 3
 
 # Description
 
@@ -13,6 +14,9 @@ such as:
 	- EQUALIZE: Equalize an image
 	- ROTATE: Rotate the selection or the entire image
 	- APPLY: Apply a filter
+	- SELECT_FILTER: Select a filter
+	- GRAYSCALE: Convert the image to grayscale
+	- EXIT: Exit the program
 
 # `main.c`
 
@@ -36,3 +40,4 @@ This file contains the implementation of the functions found in `utils.h`.
 
 This file contains the implementation of the functions found in `image.h`. 
 It takes care of loading and saving process.
+

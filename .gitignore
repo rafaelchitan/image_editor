@@ -51,26 +51,11 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-cs/
-check
-check_utils/
-tests/
-input/
-output/
-ref/
-tests.json
-install.sh/
-src/
-Cargo.lock
-Cargo.toml
-tasks/
 *.ppm
 *.pgm
 *.png
 *.git.
-target/
-image_check
-install.sh
-312CA_StanAndrei_Tema3.zip
 
 .vscode/
+.DS_Store
+image_editor

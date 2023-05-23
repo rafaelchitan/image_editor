@@ -18,4 +18,6 @@ void apply_command(struct image *loaded_image);
 
 void rotate_command(struct image *loaded_image);
 
+void merge(struct image *image);
+
 #endif
